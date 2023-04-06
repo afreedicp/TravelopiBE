@@ -8,6 +8,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 var indexRouter = require('./routes/index');
 
+const cors = require('cors');
 var app = express();
 
 // view engine setup
@@ -19,7 +20,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(
+  cors({
+    origin: process.env.REACT_APP_URL,
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true,
+  })
+);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

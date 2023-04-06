@@ -5,16 +5,17 @@ const prisma = new PrismaClient();
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
-/* GET home page. */
+
 router.get('/travellers', async (req, res) => {
   let travellers = await prisma.Travellers.findMany({});
   return res.json(travellers);
 });
+
 router.post('/travellers/createTraveller', async (req, res) => {
   let travelerConfig = {
     name: req.body.name,
     email: req.body.email,
-    numberOfTravellers: req.body.numberOfTravellers,
+    numberOfTravellers: Number(req.body.numberOfTravellers),
     destination: req.body.destination,
   };
   let createTraveller = await prisma.Travellers.create({
