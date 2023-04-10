@@ -16,6 +16,7 @@ router.post('/travellers/createTraveller', async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     numberOfTravellers: Number(req.body.numberOfTravellers),
+    budgetPerPerson: req.body.budgetPerPerson,
     destination: req.body.destination,
   };
   let createTraveller = await prisma.Travellers.create({

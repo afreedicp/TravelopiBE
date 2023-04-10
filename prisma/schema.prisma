@@ -13,4 +13,5 @@ model Travellers {
      email              String @db.VarChar(255)
      numberOfTravellers Int
      destination        String @db.VarChar(255)
+     budgetPerPerson    String @db.VarChar(255)
 }
